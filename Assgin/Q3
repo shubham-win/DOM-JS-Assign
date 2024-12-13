@@ -1,0 +1,51 @@
+## Q3. Explain the concept of Event Bubbling in the DOM.
+
+* **Event Bubbling in the DOM**
+Event bubbling is a fundamental concept in the Document Object Model (DOM) that describes how events propagate through the DOM tree. When an event occurs on an element, it triggers a chain reaction of events that bubble up through the DOM tree, allowing parent elements to capture and handle the event.
+
+* **How Event Bubbling Works**
+Here's a step-by-step explanation of the event bubbling process:
+===============================================================
+
+* **Event Target:** An event occurs on a specific element, known as the event target.
+* **Event Capture:** The event is captured by the event target and its associated event listeners are triggered.
+* **Bubbling:** The event then bubbles up through the DOM tree, triggering event listeners on each parent element.
+* **Propagation:** The event continues to propagate up the DOM tree until it reaches the root element (usually the document object).
+
+Example :-
+--------
+<div id="container">
+  <button id="button">Click me!</button>
+</div>
+
+If we attach an event listener to the button element, it will trigger when the button is clicked. However, the event will also bubble up to the div element and trigger any event listeners attached to it.
+
+```JavaScript
+document.getElementById('button').addEventListener('click', function() {
+  console.log('Button clicked!');
+});
+
+document.getElementById('container').addEventListener('click', function() {
+  console.log('Container clicked!');
+});
+```
+**Output**
+Button clicked!
+Container clicked!
+------------------
+
+The event bubbled up from the button element to the div element, triggering both event listeners.
+
+## Stopping Event Bubbling
+To prevent event bubbling, We can use the `stopPropagation()` method on the event object. This will stop the event from propagating up the DOM tree.
+
+```javascript
+document.getElementById('button').addEventListener('click', function(event) {
+  event.stopPropagation();
+  console.log('Button clicked!');
+});
+`
+By stopping event bubbling, we can prevent the event from triggering event listeners on parent elements.
+
+Conclusion
+Event bubbling is an essential concept in the DOM that allows events to propagate through the DOM tree, enabling parent elements to capture and handle events. Understanding event bubbling is crucial for building robust and efficient event-driven applications.

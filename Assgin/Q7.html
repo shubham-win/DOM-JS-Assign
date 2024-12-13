@@ -1,0 +1,88 @@
+<!-- Q7. Build a dynamic dropdown menu using HTML and JavaScript. Create an HTML structure for a navigation
+menu with dropdowns. Use JavaScript to toggle the visibility of dropdowns when the user hovers over menu
+items. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: chocolate;
+        }
+
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        .dropdown {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 20px;
+            padding-left: 50px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a>
+                <ul class="dropdown">
+                    <li><a href="#">Submenu 1</a></li>
+                    <li><a href="#">Submenu 2</a></li>
+                    <li><a href="#">Submenu 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Services</a>
+                <ul class="dropdown">
+                    <li><a href="#">Submenu 5</a></li>
+                    <li><a href="#">Submenu 6</a></li>
+                    <li><a href="#">Submenu 7</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a>
+                <ul class="dropdown">
+                    <li><a href="#">Submenu 7</a></li>
+                    <li><a href="#">Submenu 8</a></li>
+                    <li><a href="#">Submenu 9</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+   
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const menuItems = document.querySelectorAll('nav ul li')
+        menuItems.forEach((menuItem) => {
+            menuItem.addEventListener('mouseover', () => {
+                const dropdown = menuItem.querySelector('.dropdown');
+                if (dropdown) {
+                    dropdown.style.display = 'block';
+                }
+            });
+            menuItem.addEventListener('mouseout', () => {
+                const dropdown = menuItem.querySelector('.dropdown');
+                if (dropdown) {
+                    dropdown.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

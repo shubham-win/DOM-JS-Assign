@@ -1,0 +1,33 @@
+## Q2.Explain the concept of event delegation and provide a scenario where it is beneficial.
+
+Event delegation is a technique used in JavaScript to handle events on a large number of elements by attaching a single event listener to a parent element. When an event occurs on a child element, the event bubbles up the DOM tree and is caught by the parent element's event listener.
+
+* **How it works**
+==================
+
+ Attach an event listener to a parent element.
+When an event occurs on a child element, the event bubbles up the DOM tree.
+The parent element's event listener checks the event target (the element that triggered the event) to determine which child element was involved.
+The event listener can then take action based on the event target.
+* **Scenario:** Beneficial use case
+Suppose we have a table with 100 rows, each with a delete button. Instead of attaching a separate event listener to each delete button, we can use event delegation to attach a single event listener to the table element.
+
+```javascript
+const table = document.getElementById('myTable');
+
+// Attach an event listener to the table
+table.addEventListener('click', (event) => {
+  // Check if the event target is a delete button
+  if (event.target.classList.contains('delete-btn')) {
+    // Get the row index from the button's data attribute
+    const rowIndex = event.target.dataset.rowIndex;
+    // Delete the row
+    deleteRow(rowIndex);
+  }
+});
+`
+In this scenario, event delegation is beneficial because:
+
+We only need to attach a single event listener to the table element, rather than 100 separate event listeners to each delete button.
+If we add or remove rows from the table, we don't need to worry about attaching or detaching event listeners from each button.
+The code is more efficient and easier to maintain.

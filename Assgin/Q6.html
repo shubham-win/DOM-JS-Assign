@@ -1,0 +1,101 @@
+<!-- Q6. Create a simple image gallery using HTML and JavaScript, Design a basic HTML structure with images, and use JavaScript to implement functionality that allows users to navigate through the images. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            background: rgb(88,50,113);
+background: linear-gradient(27deg, rgba(88,50,113,1) 0%, rgba(253,29,29,0.6194852941176471) 28%, rgba(252,176,69,1) 74%, rgba(217,191,94,1) 87%, rgba(26,128,99,1) 100%);
+                }
+        .gallery {
+            position: relative;
+            width: 80%;
+            margin: 40px auto;
+        }
+        
+        .gallery-image {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: none;
+            display: none;
+        }
+        
+        .gallery-image img.active {
+            display: block;
+        }
+        
+        .gallery-controls {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .gallery-controls button {
+            background-color: #78cee1;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .gallery-controls button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="gallery-image">
+            <img src="image1.jpg" alt="im 1" class="active">
+            <img src="image2.jpg" alt="im 2">
+            <img src="image3.jpg" alt="im 3">
+            <img src="image4.jpg" alt="im 4">
+        </div>
+        <div class="gallery-controls">
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const galleryImage = document.querySelector('.gallery-image');
+        const images = document.querySelectorAll('.gallery-image img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let currentImageIndex = 0;
+        images[currentImageIndex].classList.add('active');
+        prevButton.addEventListener('click', () => {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            images[currentImageIndex].classList.add('active');
+            console.log(currentImageIndex);
+        });
+        nextButton.addEventListener('click', () => {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+            console.log(currentImageIndex);
+        });
+        images.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                images[currentImageIndex].classList.remove('active');
+                currentImageIndex = index;
+                images[currentImageIndex].classList.add('active');
+            });
+        });
+    </script>
+    
+</body>
+</html>
